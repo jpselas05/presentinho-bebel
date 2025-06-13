@@ -1,0 +1,659 @@
+body {
+    font-family: 'Fredoka One', cursive;
+    /* Nova fonte fofa */
+    background-color: #ffdeec;
+    /* Rosa bem claro, quase branco (fallback) */
+    overflow-x: hidden;
+    /* Previne rolagem horizontal */
+    height: 100vh;
+    /* Garante que o corpo ocupe 100% da altura da viewport para rolagem */
+}
+
+/* Estilos para corações estáticos (agora emojis) */
+.static-heart-emoji {
+    position: absolute;
+    /* Posicionamento absoluto dentro do content-wrapper */
+    z-index: 0;
+    pointer-events: none;
+    font-size: 2.5rem;
+    /* Tamanho padrão do emoji */
+    line-height: 1;
+    /* Garante que o emoji não ocupe espaço extra */
+    transform: translate(-50%, -50%) rotate(0deg);
+    /* Centralizado e rotação inicial */
+    opacity: 0.7;
+    /* Opacidade aumentada para melhor visibilidade */
+    color: #ff69b4;
+    /* Cor rosa, caso o emoji não tenha nativamente */
+    user-select: none;
+    /* Previne seleção de texto nos emojis */
+}
+
+/* Ajustes para rotação e tamanho aleatórios para os corações */
+.static-heart-emoji.size-small {
+    font-size: 1.8rem;
+    opacity: 0.6;
+}
+
+/* Levemente menor, mais opaco */
+.static-heart-emoji.size-medium {
+    font-size: 2.5rem;
+    opacity: 0.7;
+}
+
+.static-heart-emoji.size-large {
+    font-size: 3.2rem;
+    opacity: 0.8;
+}
+
+/* Levemente maior, mais opaco */
+
+/* Rotações aleatórias */
+.static-heart-emoji.rotate-1 {
+    transform: translate(-50%, -50%) rotate(15deg);
+}
+
+.static-heart-emoji.rotate-2 {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.static-heart-emoji.rotate-3 {
+    transform: translate(-50%, -50%) rotate(75deg);
+}
+
+.static-heart-emoji.rotate-4 {
+    transform: translate(-50%, -50%) rotate(105deg);
+}
+
+.static-heart-emoji.rotate-5 {
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.static-heart-emoji.rotate-6 {
+    transform: translate(-50%, -50%) rotate(165deg);
+}
+
+.static-heart-emoji.rotate-7 {
+    transform: translate(-50%, -50%) rotate(195deg);
+}
+
+.static-heart-emoji.rotate-8 {
+    transform: translate(-50%, -50%) rotate(225deg);
+}
+
+.static-heart-emoji.rotate-9 {
+    transform: translate(-50%, -50%) rotate(255deg);
+}
+
+.static-heart-emoji.rotate-10 {
+    transform: translate(-50%, -50%) rotate(285deg);
+}
+
+.static-heart-emoji.rotate-11 {
+    transform: translate(-50%, -50%) rotate(315deg);
+}
+
+.static-heart-emoji.rotate-12 {
+    transform: translate(-50%, -50%) rotate(345deg);
+}
+
+
+/* Estilos para animação de confete */
+.confetti {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+    animation: fall 3s forwards;
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Estilos específicos para carrossel */
+.carousel-container {
+    position: relative;
+    width: 90%;
+    /* Ajuste para não colar nas bordas */
+    max-width: 500px;
+    overflow: hidden;
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border: 2px solid #ffb3c1;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+    object-fit: cover;
+    border: 2px solid #ffdded;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.6rem 1rem;
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ffc2d4;
+}
+
+.carousel-nav-btn:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-nav-btn.left {
+    left: 0.5rem;
+}
+
+.carousel-nav-btn.right {
+    right: 0.5rem;
+}
+
+.carousel-nav-btn span {
+    color: #ff69b4;
+    font-size: 1.2rem;
+}
+
+/* Estilos para modais */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 160, 190, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+    box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3);
+    text-align: center;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    position: relative;
+    border: 3px solid #ffb3c1;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ff69b4;
+    transition: transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    transform: rotate(90deg) scale(1.05);
+}
+
+/* Botão estilizado */
+.styled-button {
+    background-image: linear-gradient(to right, #ff80b3 0%, #ffc2d4 100%);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+    border: 1px solid #ffdded;
+    font-weight: 700;
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+}
+
+.styled-button:hover {
+    background-image: linear-gradient(to right, #ffc2d4 0%, #ff80b3 100%);
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 6px 12px rgba(255, 105, 180, 0.3);
+}
+
+.styled-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(255, 105, 180, 0.1);
+}
+
+/* Animações para tela de splash (mantidas) */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-bounce {
+    animation: bounce 1s infinite ease-in-out;
+}
+
+/* Estilos para botões da tela de splash */
+#splash-screen button {
+    transition: all 0.3s ease-in-out;
+    border: 2px solid #fff;
+    font-weight: 700;
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+}
+
+#noBtn {
+    background-color: #ff66aa;
+    color: white;
+}
+
+#noBtn:hover {
+    background-color: #ff4d94;
+    transform: scale(1.03);
+}
+
+#yesBtn {
+    background-color: #ff99cc;
+    color: white;
+}
+
+#yesBtn:hover {
+    background-color: #ff80b3;
+    transform: scale(1.03);
+}
+
+/* Estilos para agrupar botões lado a lado na tela de splash */
+#splash-screen .flex-col.sm\:flex-row {
+    display: flex;
+    flex-direction: row;
+    /* Sempre lado a lado */
+    align-items: center;
+    /* Centraliza verticalmente */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    flex-wrap: wrap;
+    /* Permite quebrar linha em telas muito pequenas */
+}
+
+#splash-screen .flex-col.sm\:flex-row button {
+    flex: 1;
+    /* Faz com que os botões tentem ocupar o mesmo espaço */
+    max-width: 180px;
+    /* Limita largura máxima do botão */
+}
+
+/* Bolhas de amor flutuantes */
+.love-bubble {
+    position: absolute;
+    background-color: rgba(255, 180, 200, 0.8);
+    border-radius: 50%;
+    animation: floatBubble 8s infinite ease-in-out;
+    opacity: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #ff69b4;
+    font-weight: bold;
+    box-shadow: 0 1px 5px rgba(255, 105, 180, 0.15);
+    border: 1px solid #ffc2d4;
+}
+
+.love-bubble span {
+    pointer-events: none;
+}
+
+@keyframes floatBubble {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-50px) scale(1);
+        opacity: 0;
+    }
+}
+
+.pop-message {
+    position: absolute;
+    background-color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    font-size: 0.8rem;
+    color: #ff69b4;
+    font-weight: 600;
+    opacity: 0;
+    animation: fadeOut 1.5s forwards;
+    pointer-events: none;
+    z-index: 100;
+    border: 1px solid #ffdded;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Estilos para tela cheia e imagem de fundo da Hello Kitty */
+#splash-screen {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow-y: auto;
+}
+
+/* Imagem de fundo da Hello Kitty para o conteúdo principal */
+#main-content {
+    background-image: url('https://i.ibb.co/3QQyQJN');
+    /* IMAGEM HELLO KITTY */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow-y: auto;
+    /* Garante que o conteúdo possa ser rolado */
+    display: flex;
+    /* Para centralizar o content-wrapper */
+    justify-content: center;
+    align-items: flex-start;
+    /* Alinha no topo, permitindo rolagem */
+    padding-top: 30px;
+    /* Adiciona um preenchimento superior */
+    padding-bottom: 30px;
+    /* Adiciona um preenchimento inferior */
+}
+
+/* O "cartão" agora é um contêiner de conteúdo mais claro que flutua sobre o fundo da Hello Kitty */
+.content-wrapper {
+    background-color: rgba(255, 255, 255, 0.85);
+    /* Fundo semi-transparente para ver a Hello Kitty */
+    padding: 2rem;
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+    /* Sombra suave */
+    max-width: 500px;
+    /* Mantém largura controlada */
+    width: 90%;
+    /* Responsivo */
+    border: 2px solid #ffb3c1;
+    /* Borda rosa mais fina */
+    position: relative;
+    /* Para posicionamento de coração estático */
+    overflow: hidden;
+    /* Garante que os corações não saiam das bordas do wrapper */
+}
+
+/* Ajuste para texto da tela de splash */
+#splash-screen h1 {
+    color: #f72585;
+    /* Rosa mais vibrante para o texto */
+    text-shadow: 2px 2px 0px #ffc0cb;
+    /* Sombra suave para profundidade sem desfoque */
+}
+
+#splash-screen p {
+    color: #ff4d94;
+    /* Rosa mais escuro para mensagem de certeza */
+    text-shadow: 1px 1px 0px #fff;
+    /* Sombra branca suave */
+}
+
+/* Estilos para o contador em tempo real */
+#daysSinceCounter {
+    background-color: #ffe0f0;
+    /* Fundo rosa claro para o contador */
+    border: 2px solid #ffc2d4;
+    /* Borda rosa */
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+    /* Espaço abaixo do contador */
+    text-align: center;
+    font-weight: 700;
+    color: #e91e63;
+    /* Rosa mais escuro para o texto */
+    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
+    border-radius: 0px;
+    /* TOTALMENTE RETO */
+}
+
+/* Estilos para partes específicas do texto do contador */
+.counter-phrase {
+    font-size: 1.2rem;
+    /* Fonte menor para a frase */
+    color: #d81b60;
+    /* Rosa levemente mais claro */
+    display: block;
+    /* Garante que esteja em sua própria linha */
+    margin-bottom: 0.25rem;
+    /* Pequeno espaço abaixo da frase */
+}
+
+.counter-time {
+    font-size: 1.6rem;
+    /* Fonte maior para o tempo */
+    color: #ff4d94;
+    /* Rosa mais escuro e vibrante */
+    display: block;
+    /* Garante que esteja em sua própria linha */
+    font-weight: 800;
+}
+
+/* Estilos para o Medidor do Amor */
+.love-meter-container {
+    background-color: #ffe0f0;
+    border: 2px solid #ffc2d4;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(255, 105, 180, 0.1);
+    border-radius: 0px;
+    /* RETO */
+    position: relative;
+    height: auto;
+    /* Altura automática para ajustar conteúdo */
+    display: flex;
+    flex-direction: column;
+    /* Coloca elementos em coluna */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Estilo para o texto da porcentagem (agora acima do coração) */
+#lovePercentageText {
+    font-size: 2.5rem;
+    /* Maior para visibilidade */
+    font-weight: 800;
+    color: #ff4d94;
+    /* Cor rosa para o texto */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+    /* Sombra branca suave */
+    -webkit-text-stroke: 0.5px #ffe0f0;
+    /* Contorno claro */
+    pointer-events: none;
+    /* Não inerfere nos cliques */
+    z-index: 2;
+    margin-bottom: 10px;
+    /* Espaço entre a porcentagem e o coração */
+    transition: color 0.3s ease;
+    /* Transição para a cor do texto */
+}
+
+.love-meter-visual-wrapper {
+    position: relative;
+    /* Para posicionar o coração SVG */
+    width: 100%;
+    /* Ocupa a largura total disponível */
+    height: 120px;
+    /* Altura fixa para o SVG ser exibido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Para recortar qualquer transbordamento do preenchimento */
+}
+
+#loveHeartSVG {
+    /* Garante que o SVG preencha seu contêiner e seja centralizado */
+    display: block;
+    margin: auto;
+    /* Opcional: adicionar uma sombra sutil para profundidade */
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+    z-index: 1;
+    /* Abaixo do texto */
+}
+
+.love-meter-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 0px;
+    /* RETO */
+    font-size: 1rem;
+    color: #ff69b4;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.love-meter-message.show {
+    opacity: 1;
+}
+
+.love-meter-instruction {
+    font-size: 1.2rem;
+    color: #d81b60;
+    margin-bottom: 5px;
+}
+
+/* Modal para Medidor do Amor Completo */
+#loveMeterFullModal .modal-content {
+    background-color: rgba(255, 255, 255, 0.98);
+    border: 5px solid #ff4d94;
+    /* Borda mais proeminente */
+    padding: 3rem;
+}
+
+#loveMeterFullModal h2 {
+    color: #ff4d94;
+    font-size: 3.5rem;
+    /* Título maior */
+}
+
+#loveMeterFullModal p {
+    color: #d81b60;
+    font-size: 1.8rem;
+    /* Mensagem maior */
+    line-height: 1.4;
+}
